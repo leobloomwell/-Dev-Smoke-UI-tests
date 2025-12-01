@@ -1,4 +1,4 @@
-# -Dev-Smoke-UI-tests
+# Dev-Smoke-UI-tests
 
 Automated UI Smoke tests for https://admin.marktplatz-dev.bloomwell.de
 
