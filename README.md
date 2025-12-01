@@ -1,23 +1,23 @@
 # Dev-Smoke-UI-tests
 
-Automated UI Smoke tests for https://admin.marktplatz-dev.bloomwell.de
+Automated UI smoke testing suite for the Bloomwell Admin Platform:
+https://admin.marktplatz-dev.bloomwell.de
 
-Overview
+This project contains automation tests intended to quickly validate the availability and core functionality of essential features in the DEV environment. The suite is designed to catch critical UI and navigation issues early before deeper QA begins.
 
-This project contains UI smoke tests for the Bloomwell Admin Platform (Flutter Web application).
-The tests validate the core functionality and key user flows to ensure that critical features are working in the DEV environment.
+Objectives of Smoke Testing
 
-The goal of smoke testing:
+Verify that the application loads successfully
 
-Check core UI availability
+Validate navigation and core UI flows
 
-Validate basic navigation and essential workflows
+Confirm that primary features are functional
 
-Identify regressions early
+Detect regressions early
 
-Confirm localization behavior
+Verify localization behavior (DE / EN)
 
-Confirm that the UI loads and runs without blocking errors
+Ensure that no blocking UI / JavaScript runtime errors occur
 
 Tech Stack
 
@@ -25,13 +25,13 @@ Dart / Flutter
 
 Patrol (UI automation for Flutter Web)
 
-Chrome WebDriver (optional)
-
 Patrol App Service / NativeAutomator
+
+Chrome WebDriver (optional)
 
 Requirements
 
-Before running tests, install:
+Install the following before running tests:
 
 1. Flutter
 
@@ -39,7 +39,7 @@ https://docs.flutter.dev/get-started/install
 
 2. Dart SDK
 
-Comes bundled with Flutter.
+Bundled with Flutter.
 
 3. Patrol CLI
 dart pub global activate patrol_cli
@@ -54,23 +54,52 @@ Project Structure
 /config
 README.md
 
+
+Each test file validates a separate set of critical functionality in the Bloomwell Admin.
+
+Running Tests
+
+Example run:
+
+patrol test --web
+
+
+or locally in Flutter:
+
+flutter test
+
+Test Coverage Overview
+
+The current smoke suite validates:
+
+Login and authentication flow
+
+Page rendering and navigation
+
+Product table and filtering behavior
+
+Localization switch (EN ↔ DE)
+
+Availability of key UI elements
+
+No blocking runtime errors
+
 Test Execution Status
 
-All included smoke tests were executed successfully against:
+All smoke tests have been executed successfully on the DEV environment:
+
 https://admin.marktplatz-dev.bloomwell.de
 
-Validated functionality includes:
+Results:
 
-Login and navigation
+Application loads correctly
 
-Products page and filters
+Core UI components are rendered
 
-UI rendering and loading state
+Localization switch works
 
-Localization change EN ↔ DE
+Product filters are visible and functional
 
-Visibility of core UI components
+No critical UI blocks found
 
-No blocking UI or JavaScript errors observed
-
-The initial smoke-run passed without critical issues, and the framework is ready to be expanded with additional UI workflows.
+The smoke suite is confirmed stable and ready for extension.
