@@ -3,8 +3,7 @@
 Automated UI smoke testing suite for the Bloomwell Admin Platform:
 https://admin.marktplatz-dev.bloomwell.de
 
-This project contains automation tests that verify the most critical interface functions and workflows in the DEV environment.
-The purpose of this test suite is to detect major UI regressions early and confirm that primary system functionality is not blocked.
+This project contains automation tests intended to quickly validate the availability and core functionality of essential features in the DEV environment. The suite is designed to catch critical UI and navigation issues early before deeper QA begins.
 
 Objectives of Smoke Testing
 
@@ -12,13 +11,13 @@ Verify that the application loads successfully
 
 Validate navigation and core UI flows
 
-Confirm that essential features are functional
+Confirm that primary features are functional
 
 Detect regressions early
 
 Verify localization behavior (DE / EN)
 
-Ensure that no UI / JavaScript runtime errors occur
+Ensure that no blocking UI / JavaScript runtime errors occur
 
 Tech Stack
 
@@ -32,16 +31,17 @@ Chrome WebDriver (optional)
 
 Requirements
 
-Install the following before running the tests:
+Install the following before running tests:
 
-Flutter
+1. Flutter
+
 https://docs.flutter.dev/get-started/install
 
-Dart SDK
+2. Dart SDK
+
 Bundled with Flutter.
 
-Patrol CLI
-
+3. Patrol CLI
 dart pub global activate patrol_cli
 
 Project Structure
@@ -50,19 +50,22 @@ Project Structure
   ├─ product_filters_test.dart
   ├─ localization_test.dart
   └─ smoke_suite_test.dart
-
 /lib
 /config
 README.md
 
 
-Each test file validates a separate set of core functionality in the Bloomwell Admin.
+Each test file validates a separate set of critical functionality in the Bloomwell Admin.
 
 Running Tests
-Example (recommended):
+
+Example run:
+
 patrol test --web
 
-Or locally in Flutter:
+
+or locally in Flutter:
+
 flutter test
 
 Test Coverage Overview
@@ -75,7 +78,7 @@ Page rendering and navigation
 
 Product table and filtering behavior
 
-Localization switch (EN ⇆ DE)
+Localization switch (EN ↔ DE)
 
 Availability of key UI elements
 
@@ -84,4 +87,19 @@ No blocking runtime errors
 Test Execution Status
 
 All smoke tests have been executed successfully on the DEV environment:
+
 https://admin.marktplatz-dev.bloomwell.de
+
+Results:
+
+Application loads correctly
+
+Core UI components are rendered
+
+Localization switch works
+
+Product filters are visible and functional
+
+No critical UI blocks found
+
+The smoke suite is confirmed stable and ready for extension.
