@@ -96,28 +96,6 @@ We verify downloadable documents:
 
 ---
 
-📁 Bloomwell-Dev-Smoke-UI-Tests
-│
-├── tests/
-│   ├── login.spec.ts               # Login + browser authentication
-│   ├── localization.spec.ts        # Language switch EN/DE validation
-│   ├── navigation_menu.spec.ts     # Sidebar navigation checks
-│   ├── page_availability.spec.ts   # Page load smoke tests
-│   ├── order_search.spec.ts        # Orders search functionality
-│   ├── order_statuses.spec.ts      # Order status UI validation
-│   ├── product_filters.spec.ts     # Product filters smoke tests
-│   ├── product_editor.spec.ts      # Product editor load checks
-│   ├── document_downloads.spec.ts  # File download verification
-│
-├── playwright.config.ts            # Playwright test configuration
-├── package.json                    # Dependencies & scripts
-├── tsconfig.json                   # TypeScript configuration
-└── README.md                       # Project documentation
-
-
-
----
-
 ## 🚀 How to Run Tests Locally
 
 ### 1. Install Dependencies
