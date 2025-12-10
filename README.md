@@ -8,7 +8,7 @@ The purpose of this suite is to validate that the most critical flows of the DEV
 
 ---
 
-##  What This Test Suite Covers
+## ✅ What This Test Suite Covers
 
 ### 🔐 1. Login Flow (Browser + UI Authentication)
 The test suite:
@@ -32,13 +32,13 @@ This ensures the language selector works and translations load correctly.
 ### 📌 3. Left Sidebar Navigation
 We test that each menu item:
 
-| Menu | Path | Status |
-|------|------|--------|
-| Dashboard | `/dashboard` | ✔ Loads correct page |
-| Orders | `/orders` | ✔ |
-| Products | `/products` | ✔ |
-| Pharmacies | `/pharmacies` | ✔ |
-| Settings | `/settings` | ✔ |
+| Menu       | Path          | Status |
+|-----------|----------------|--------|
+| Dashboard | `/dashboard`   | ✔ Loads correct page |
+| Orders    | `/orders`      | ✔ |
+| Products  | `/products`    | ✔ |
+| Pharmacies| `/pharmacies`  | ✔ |
+| Settings  | `/settings`    | ✔ |
 
 Each test:
 - finds menu item in the sidebar  
@@ -57,47 +57,47 @@ Deep-link smoke tests confirm that these pages load without errors:
 - `/pharmacies`
 - `/settings`
 
-Useful for catching routing problems and missing imports early.
+Useful for catching routing issues and missing imports early.
 
 ---
 
-### 📑 5. Order Search (Basic Search Check)
-Smoke-level validation:
+### 📑 5. Order Search (Basic Smoke Check)
+We verify:
 - searching existing sample order numbers  
-- verifying “not found” handling
+- handling of "no results found"
 
 Ensures the search bar logic works.
 
 ---
 
 ### 🧪 6. Product Filters
-We verify:
-- category filters
-- stock availability
-- active/inactive filtering
-
-This confirms filtering logic and API responses work correctly.
+We validate:
+- category filters  
+- stock availability filtering  
+- active/inactive product filters  
 
 ---
 
-### 📝 7. Product Editor (Smoke)
+### 📝 7. Product Editor (Smoke Level)
 Tests that the product editor:
-- opens
-- renders fields
-- loads product data
+- opens correctly  
+- displays product data  
+- fields are visible  
 
-(No destructive editing — only read-only smoke checks.)
+This test does **not** modify any product data (non-destructive).
 
 ---
 
 ### 📄 8. Document Downloads
-We validate that the application can successfully download documents (PDF, invoices, etc.), ensuring:
-
-- file appears in downloads folder  
-- download event is triggered  
+We verify downloadable documents:
+- trigger download event  
+- save correctly  
 - file is not corrupted  
 
 ---
+
+## 📂 Project Structure
+
 /tests
 ├── login.spec.ts
 ├── localization.spec.ts
@@ -108,6 +108,7 @@ We validate that the application can successfully download documents (PDF, invoi
 ├── product_filters.spec.ts
 ├── product_editor.spec.ts
 ├── document_downloads.spec.ts
+
 /playwright.config.ts
 /package.json
 /README.md
@@ -135,7 +136,7 @@ npx playwright install
 npx playwright test
 
 
-### 4. Run with visible browser (headed mode)
+### 4. Run in headed mode (visible browser)
 
 
 npx playwright test --headed
@@ -151,11 +152,10 @@ npx playwright test tests/login.spec.ts
 
 ## 📊 Test Reports
 
-Generate HTML test report:
-
+Generate Playwright HTML report:
 
 
 npx playwright show-report
 
-## 📂 Project Structure
 
+---
