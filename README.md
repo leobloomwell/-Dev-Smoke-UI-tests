@@ -98,6 +98,64 @@ We validate that the application can successfully download documents (PDF, invoi
 - file is not corrupted  
 
 ---
+/tests
+├── login.spec.ts
+├── localization.spec.ts
+├── navigation_menu.spec.ts
+├── page_availability.spec.ts
+├── order_search.spec.ts
+├── order_statuses.spec.ts
+├── product_filters.spec.ts
+├── product_editor.spec.ts
+├── document_downloads.spec.ts
+/playwright.config.ts
+/package.json
+/README.md
+
+
+---
+
+## 🚀 How to Run Tests Locally
+
+### 1. Install Dependencies
+
+
+npm install
+
+
+### 2. Install Browsers
+
+
+npx playwright install
+
+
+### 3. Run all tests
+
+
+npx playwright test
+
+
+### 4. Run with visible browser (headed mode)
+
+
+npx playwright test --headed
+
+
+### 5. Run a specific test file
+
+
+npx playwright test tests/login.spec.ts
+
+
+---
+
+## 📊 Test Reports
+
+Generate HTML test report:
+
+
+
+npx playwright show-report
 
 ## 📂 Project Structure
 
