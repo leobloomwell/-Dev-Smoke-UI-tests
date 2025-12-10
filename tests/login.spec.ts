@@ -22,10 +22,10 @@ test('Login test and navigate to dashboard', async ({ browser }) => {
   // Click login
   await page.click('button[type="submit"]');
 
-  // Wait for dashboard
+
   await page.waitForURL('**/dashboard');
 
-  // Validate
+
   await expect(page.locator('text=Dashboard')).toBeVisible();
 
   console.log('✅ Login successful');
