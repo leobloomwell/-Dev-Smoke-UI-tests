@@ -18,6 +18,9 @@ playwright-report/
 test-results/
 *.zip
 
+# Allure
+/allure-results/
+
 # Authentication & Security
 auth.json
 *.env
@@ -147,4 +150,3 @@ coverage/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-

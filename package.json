@@ -7,16 +7,24 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.57.0"
+    "@playwright/test": "^1.57.0",
+    "@slack/web-api": "^7.13.0",
+    "allure-playwright": "^3.4.3",
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3"
   },
   "dependencies": {
+    "allure": "^3.0.0",
     "playwright-slack-report": "^1.1.100"
   }
 }
