@@ -15,5 +15,8 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.57.0"
+  },
+  "dependencies": {
+    "playwright-slack-report": "^1.1.100"
   }
 }
