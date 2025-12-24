@@ -128,6 +128,44 @@ Before running tests, you need to configure environment variables:
 
 ---
 
+## 🌍 Multi-Environment & Multi-Role Selection
+
+The test suite supports multiple environments and user roles for flexible testing scenarios.
+
+### Environment Selection
+
+Set `TEST_ENV` to choose the target environment:
+- `dev` (default) - Development environment
+- `staging` - Staging environment  
+- `prod` - Production environment (use with caution!)
+
+# Run tests against dev (default)
+TEST_ENV=dev npm test
+
+# Run tests against staging
+TEST_ENV=staging npm test### User Role Selection
+
+Set `TEST_ROLE` to choose the user role:
+- `admin` (default) - Administrator role
+- `pharmacy_user` - Pharmacy user role
+- `pharmacy_employee` - Pharmacy employee role
+
+# Run tests with admin role (default)
+TEST_ROLE=admin npm test
+
+# Run tests with pharmacy_user role
+TEST_ROLE=pharmacy_user npm test### Combined Selection
+
+You can combine environment and role selection:
+
+# Run tests with admin role in dev environment
+TEST_ENV=dev TEST_ROLE=admin npm test
+
+# Run tests with pharmacy_user role in staging
+TEST_ENV=staging TEST_ROLE=pharmacy_user npm test**Note:** Configure credentials for each environment and role in your `.env` file. See `.env.example` for the required variable structure.
+
+---
+
 ## 🚀 How to Run Tests Locally
 
 ### 1. Install Dependencies
