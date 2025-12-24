@@ -1,12 +1,17 @@
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
-import { getTestCredentials } from './utils/env';
+import { getTestCredentials, getBaseURL } from './utils/env';
 
 // Load environment variables from .env file
 dotenv.config();
 
 // Validate credentials at config load time
 const credentials = getTestCredentials();
+const baseURL = getBaseURL();
+const environment = credentials.environment;
+
+console.log(`🌍 Running tests against: ${environment.toUpperCase()} environment`);
+console.log(`🔗 Base URL: ${baseURL}`);
 
 export default defineConfig({
   testDir: './tests',
@@ -15,8 +20,8 @@ export default defineConfig({
     [
       "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
       {
-        slackOAuthToken: process.env.SLACK_BOT_USER_OAUTH_TOKEN!,
-        channels: [process.env.SLACK_CHANNELS!], // provide one or more Slack channels
+        slackOAuthToken: process.env.SLACK_BOT_USER_OAUTH_TOKEN,
+        channels: [process.env.SLACK_CHANNELS], // provide one or more Slack channels
         sendResults: "always", // "always" , "on-failure", "off",
       },
     ],
@@ -29,14 +34,14 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'https://admin.marktplatz-dev.bloomwell.de',
+    baseURL: baseURL,
     headless: true,
     ignoreHTTPSErrors: true,
 
-    // Basic Auth DEV - using validated environment variables
+    // Basic Auth - using validated environment-specific credentials
     httpCredentials: {
-      username: credentials.basicAuth.username,
-      password: credentials.basicAuth.password,
+      username: credentials.config.basicAuth.username,
+      password: credentials.config.basicAuth.password,
     }
   },
 
