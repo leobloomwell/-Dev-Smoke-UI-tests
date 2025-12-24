@@ -1,8 +1,12 @@
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
+import { getTestCredentials } from './utils/env';
 
 // Load environment variables from .env file
 dotenv.config();
+
+// Validate credentials at config load time
+const credentials = getTestCredentials();
 
 export default defineConfig({
   testDir: './tests',
@@ -11,8 +15,8 @@ export default defineConfig({
     [
       "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
       {
-        slackOAuthToken: process.env.SLACK_BOT_USER_OAUTH_TOKEN,
-        channels: [process.env.SLACK_CHANNELS], // provide one or more Slack channels
+        slackOAuthToken: process.env.SLACK_BOT_USER_OAUTH_TOKEN!,
+        channels: [process.env.SLACK_CHANNELS!], // provide one or more Slack channels
         sendResults: "always", // "always" , "on-failure", "off",
       },
     ],
@@ -29,10 +33,10 @@ export default defineConfig({
     headless: true,
     ignoreHTTPSErrors: true,
 
-    // Basic Auth DEV (працює!)
+    // Basic Auth DEV - using validated environment variables
     httpCredentials: {
-      username: 'gb',
-      password: 'gb-dev-2023'
+      username: credentials.basicAuth.username,
+      password: credentials.basicAuth.password,
     }
   },
 

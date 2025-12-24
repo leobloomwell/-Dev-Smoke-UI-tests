@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
+import { getTestCredentials } from '../utils/env';
 
 test('Login test and navigate to dashboard', async ({ browser }) => {
+  // Get validated credentials from environment variables
+  const credentials = getTestCredentials();
 
   // Create context with browser-level Basic Auth
   const context = await browser.newContext({
     httpCredentials: {
-      username: 'gb',
-      password: 'gb-dev-2023',
+      username: credentials.basicAuth.username,
+      password: credentials.basicAuth.password,
     }
   });
 
@@ -16,15 +19,13 @@ test('Login test and navigate to dashboard', async ({ browser }) => {
   await page.goto('https://admin.marktplatz-dev.bloomwell.de/');
 
   // UI login
-  await page.fill('input[name="email"]', 'oleh.semenchuk.ext+stgadmin@bloomwell.de');
-  await page.fill('input[name="password"]', 'Test123!');
+  await page.fill('input[name="email"]', credentials.uiLogin.email);
+  await page.fill('input[name="password"]', credentials.uiLogin.password);
 
   // Click login
   await page.click('button[type="submit"]');
 
-
   await page.waitForURL('**/dashboard');
-
 
   await expect(page.locator('text=Dashboard')).toBeVisible();
 
