@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { getTestCredentials, getBaseURL, getCurrentRoleCredentials } from '../utils/env';
+import { LoginPage } from '../pages/LoginPage';
 
 test('Login test and navigate to dashboard', async ({ browser }) => {
   // Get validated credentials from environment variables
   const credentials = getTestCredentials();
-  const baseURL = getBaseURL();
   const roleCredentials = getCurrentRoleCredentials();
 
   console.log(`🔐 Testing login for ${credentials.environment.toUpperCase()} environment with ${credentials.role.toUpperCase()} role`);
@@ -18,20 +18,16 @@ test('Login test and navigate to dashboard', async ({ browser }) => {
   });
 
   const page = await context.newPage();
+  const loginPage = new LoginPage(page);
 
-  // Go to login page using environment-specific baseURL
-  await page.goto(baseURL);
+  // Navigate to login page
+  await loginPage.goto();
 
-  // UI login using role-specific credentials
-  await page.fill('input[name="email"]', roleCredentials.email);
-  await page.fill('input[name="password"]', roleCredentials.password);
+  // Perform login using Page Object Model
+  await loginPage.login(roleCredentials);
 
-  // Click login
-  await page.click('button[type="submit"]');
-
-  await page.waitForURL('**/dashboard');
-
-  await expect(page.locator('text=Dashboard')).toBeVisible();
+  // Verify successful login
+  await loginPage.verifyLoginSuccess();
 
   console.log('✅ Login successful');
 });

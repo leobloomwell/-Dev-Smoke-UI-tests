@@ -1,21 +1,25 @@
 import { test, expect } from '@playwright/test';
+import { ProductsPage } from '../pages/ProductsPage';
+
+test.use({ storageState: 'auth.json' });
 
 test.describe('Product filtering', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/products');
+    const productsPage = new ProductsPage(page);
+    await productsPage.goto();
   });
 
   test('Filtering by availability', async ({ page }) => {
-    const filterBtn = page.locator('button:has-text("Filter")');
+    const productsPage = new ProductsPage(page);
+    
+    // Check if filter button is available
+    const isFilterVisible = await productsPage.filterButton.isVisible();
+    if (!isFilterVisible) {
+      test.skip(true, 'Filter section unavailable');
+      return;
+    }
 
-    if (!(await filterBtn.isVisible())) test.skip(true, 'Filter section unavailable');
-
-    await filterBtn.click();
-    await page.getByText('Availability').click();
-    await page.getByLabel('Available').check();
-
-    await page.waitForTimeout(2000);
-    const rows = page.locator('tbody tr');
-    await expect(rows.first()).toBeVisible();
+    await productsPage.filterByAvailability();
+    await productsPage.verifyProductsDisplayed();
   });
 });

@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "types": ["@playwright/test", "node"]
   },
-  "include": ["tests", "utils"]
+  "include": ["tests", "utils", "pages"]
 }

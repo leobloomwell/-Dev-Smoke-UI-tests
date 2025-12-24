@@ -1,18 +1,24 @@
 import { test, expect } from '@playwright/test';
+import { ProductsPage } from '../pages/ProductsPage';
+
+test.use({ storageState: 'auth.json' });
 
 test.describe('Product editor basic validation', () => {
   test('Open product and check editor exists', async ({ page }) => {
-    await page.goto('/products');
+    const productsPage = new ProductsPage(page);
+    
+    await productsPage.goto();
+    
+    // Check if products are available
+    const firstRow = productsPage.getFirstProductRow();
+    const isVisible = await firstRow.isVisible();
+    
+    if (!isVisible) {
+      test.skip(true, 'No products available');
+      return;
+    }
 
-    const row = page.locator('tbody tr').first();
-
-    if (!(await row.isVisible())) test.skip(true, 'No products available on DEV');
-
-    await row.click();
-    await page.waitForTimeout(1500);
-
-    const editButton = page.locator('button:has-text("Edit")');
-
-    await expect(editButton).toBeVisible();
+    await productsPage.clickFirstProduct();
+    await productsPage.verifyEditButtonVisible();
   });
 });
