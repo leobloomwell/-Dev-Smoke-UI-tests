@@ -12,8 +12,8 @@ The purpose of this suite is to validate that the most critical flows of the DEV
 
 ### 🔐 1. Login Flow (Browser + UI Authentication)
 The test suite:
-- performs **browser-level basic auth** (`gb / gb-dev-2023`)
-- performs **UI login** using admin credentials
+- performs **browser-level basic auth** (configured via environment variables)
+- performs **UI login** using admin credentials (configured via environment variables)
 - verifies successful redirect to dashboard
 
 This ensures that authentication flow works both on backend & frontend.
@@ -93,6 +93,38 @@ We verify downloadable documents:
 - trigger download event  
 - save correctly  
 - file is not corrupted  
+
+---
+
+## ⚙️ Environment Setup
+
+### Prerequisites
+
+Before running tests, you need to configure environment variables:
+
+1. **Copy the example environment file:**
+   cp .env.example .env
+   
+2. **Edit `.env` file and add your credentials:**
+   BASIC_AUTH_USERNAME=your_basic_auth_username
+   BASIC_AUTH_PASSWORD=your_basic_auth_password
+   UI_LOGIN_EMAIL=your_ui_login_email@example.com
+   UI_LOGIN_PASSWORD=your_ui_login_password
+
+3. **Verify `.env` is in `.gitignore`** (already configured)
+
+**Security Note:** Never commit `.env` file to version control. The `.env.example` file serves as a template and contains no sensitive data.
+
+### Required Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `BASIC_AUTH_USERNAME` | HTTP Basic Auth username | ✅ Yes |
+| `BASIC_AUTH_PASSWORD` | HTTP Basic Auth password | ✅ Yes |
+| `UI_LOGIN_EMAIL` | Admin portal UI login email | ✅ Yes |
+| `UI_LOGIN_PASSWORD` | Admin portal UI login password | ✅ Yes |
+| `SLACK_BOT_USER_OAUTH_TOKEN` | Slack OAuth token for reporting | ❌ Optional |
+| `SLACK_CHANNELS` | Slack channel ID for reporting | ❌ Optional |
 
 ---
 
